@@ -117,6 +117,7 @@ export function Modal({
 
 /**
  * Modal action bar for buttons.
+ * Uses margin-based spacing for React Native compatibility (gap is only supported in RN 0.71+).
  */
 export function ModalActions({
   children,
@@ -125,9 +126,24 @@ export function ModalActions({
   children: React.ReactNode;
   style?: ViewStyle;
 }): React.ReactElement {
+  // Apply margin to children for spacing (gap is not supported in older React Native versions)
+  const spacedChildren = React.Children.map(children, (child, index) => {
+    if (index === 0 || !React.isValidElement(child)) {
+      return child;
+    }
+    // Clone child with added marginLeft for spacing between action buttons
+    // Flatten any existing style (handles object, array, or undefined)
+    type ChildWithStyle = React.ReactElement<{ style?: ViewStyle | ViewStyle[] }>;
+    const typedChild = child as ChildWithStyle;
+    const existingStyle = typedChild.props?.style;
+    const flattenedStyle = existingStyle ? StyleSheet.flatten(existingStyle) : undefined;
+    const combinedStyle: ViewStyle = { marginLeft: THEME.spacing.sm, ...flattenedStyle };
+    return React.cloneElement(typedChild, { style: combinedStyle });
+  });
+
   return (
     <View style={[styles.actions, style]}>
-      {children}
+      {spacedChildren}
     </View>
   );
 }
@@ -191,7 +207,6 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    gap: THEME.spacing.sm,
     marginTop: THEME.spacing.lg,
   },
 });
