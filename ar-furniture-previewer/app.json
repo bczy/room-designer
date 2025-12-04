@@ -1,7 +1,55 @@
 {
   "expo": {
-    "name": "ar-furniture-previewer",
+    "name": "AR Furniture Previewer",
     "slug": "ar-furniture-previewer",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6366F1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.arfurniturepreviewer.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to display AR furniture in your space.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to import 3D models.",
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to save and restore AR scenes."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#6366F1"
+      },
+      "package": "com.arfurniturepreviewer.app",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow AR Furniture Previewer to access your camera for AR visualization."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
   }
 }

@@ -16,14 +16,14 @@
 **Purpose**: Project initialization and React Native + Expo bare workflow setup
 
 - [X] T001 Create project structure with Expo bare workflow: `yarn create expo-app ar-furniture-previewer --template bare-minimum` (FR-051: Yarn required)
-- [ ] T002 Configure TypeScript strict mode in tsconfig.json
-- [ ] T003 [P] Install core dependencies: react-navigation, zustand, react-native-webview, react-native-fs
-- [ ] T004 [P] Configure ESLint + Prettier with React Native rules in .eslintrc.js and .prettierrc
-- [ ] T005 [P] Create directory structure per plan.md: src/app/, src/core/, src/infrastructure/, web/, tests/
-- [ ] T006 [P] Configure Jest with React Native Testing Library in jest.config.js
-- [ ] T007 [P] Configure Detox for E2E testing in detox.config.js
-- [ ] T008 Create EAS Build configuration in eas.json (development, preview, production profiles)
-- [ ] T009 [P] Configure environment variables for 8th Wall API key in app.config.js
+- [X] T002 Configure TypeScript strict mode in tsconfig.json
+- [X] T003 [P] Install core dependencies: react-navigation, zustand, react-native-webview, react-native-fs
+- [X] T004 [P] Configure ESLint + Prettier with React Native rules in .eslintrc.js and .prettierrc
+- [X] T005 [P] Create directory structure per plan.md: src/app/, src/core/, src/infrastructure/, web/, tests/
+- [X] T006 [P] Configure Jest with React Native Testing Library in jest.config.js
+- [X] T007 [P] Configure Detox for E2E testing in detox.config.js
+- [X] T008 Create EAS Build configuration in eas.json (development, preview, production profiles)
+- [X] T009 [P] Configure environment variables for 8th Wall API key in app.config.js
 
 ---
 

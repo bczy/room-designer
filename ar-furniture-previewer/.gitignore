@@ -29,8 +29,30 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+# local env files - NEVER commit API keys (FR-045)
+.env
 .env*.local
+.env.development
+.env.staging
+.env.production
 
 # typescript
 *.tsbuildinfo
+
+# Testing
+coverage/
+.jest/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+*.log
+*.tmp
+
+# EAS
+google-services-key.json
+
