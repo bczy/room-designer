@@ -223,7 +223,7 @@
 - [ ] T093 [US3] Implement ScannerScreen in src/app/screens/ScannerScreen.tsx (step-by-step wizard per FR-010)
 - [ ] T094 [US3] Create ScanProgressIndicator in src/app/components/ScanProgressIndicator.tsx (photo count, coverage map per FR-013)
 - [ ] T095 [US3] Implement capture feedback (green checkmark good, red warning blur/dark per FR-012)
-- [ ] T096 [US3] Add minimum photo validation (require 25+ photos per FR-011/FR-015)
+- [ ] T096 [US3] Add minimum photo validation (require 25+ photos per FR-011)
 - [ ] T097 [US3] Implement coverage map visualization showing captured angles per FR-013
 - [ ] T098 [US3] Add processing screen with progress indicator and estimated time (2-5 min per FR-017)
 
