@@ -31,7 +31,7 @@ export interface WebViewMessage<T extends string = string, P = unknown> {
 
 export interface TransformPayload {
   position: [number, number, number];
-  rotation: [number, number, number, number]; // quaternion
+  rotation: [number, number, number, number]; // quaternion [w, x, y, z]
   scale: [number, number, number];
 }
 
