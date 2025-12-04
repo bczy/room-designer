@@ -203,7 +203,7 @@
 
 **Goal**: Users can scan real-world objects and convert them into usable 3D models
 
-**Independent Test**: Enter Scan mode → follow wizard → capture 25+ photos → wait for processing → view and save resulting model
+**Independent Test**: Enter Scan mode → follow wizard → capture 20+ photos (25-40 recommended) → wait for processing → view and save resulting model
 
 ### Tests for User Story 3 (TDD - Write FIRST, must FAIL before implementation)
 
@@ -223,7 +223,7 @@
 - [ ] T093 [US3] Implement ScannerScreen in src/app/screens/ScannerScreen.tsx (step-by-step wizard per FR-010)
 - [ ] T094 [US3] Create ScanProgressIndicator in src/app/components/ScanProgressIndicator.tsx (photo count, coverage map per FR-013)
 - [ ] T095 [US3] Implement capture feedback (green checkmark good, red warning blur/dark per FR-012)
-- [ ] T096 [US3] Add minimum photo validation (require 25+ photos per FR-011)
+- [ ] T096 [US3] Add minimum photo validation (enforce 20 photo minimum per FR-015, display 25-40 recommendation per FR-011)
 - [ ] T097 [US3] Implement coverage map visualization showing captured angles per FR-013
 - [ ] T098 [US3] Add processing screen with progress indicator and estimated time (2-5 min per FR-017)
 
