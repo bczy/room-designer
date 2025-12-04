@@ -132,10 +132,13 @@ export function ModalActions({
       return child;
     }
     // Clone child with added marginLeft for spacing between action buttons
-    const childProps = child.props as { style?: ViewStyle };
-    return React.cloneElement(child, {
-      style: { marginLeft: THEME.spacing.sm, ...childProps.style },
-    } as Partial<typeof child.props>);
+    // Flatten any existing style (handles object, array, or undefined)
+    type ChildWithStyle = React.ReactElement<{ style?: ViewStyle | ViewStyle[] }>;
+    const typedChild = child as ChildWithStyle;
+    const existingStyle = typedChild.props?.style;
+    const flattenedStyle = existingStyle ? StyleSheet.flatten(existingStyle) : undefined;
+    const combinedStyle: ViewStyle = { marginLeft: THEME.spacing.sm, ...flattenedStyle };
+    return React.cloneElement(typedChild, { style: combinedStyle });
   });
 
   return (
