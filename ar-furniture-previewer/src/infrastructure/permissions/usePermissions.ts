@@ -90,7 +90,6 @@ export function usePermissions(): UsePermissionsResult {
         setState((prev) => ({
           ...prev,
           [permission]: result.status,
-          isChecking: false,
         }));
         
         return result;
@@ -114,7 +113,6 @@ export function usePermissions(): UsePermissionsResult {
         setState((prev) => ({
           ...prev,
           [permission]: result.status,
-          isRequesting: false,
         }));
         
         return result;
@@ -137,7 +135,6 @@ export function usePermissions(): UsePermissionsResult {
       setState((prev) => ({
         ...prev,
         camera: results.camera?.status ?? null,
-        isChecking: false,
       }));
       
       return allGranted;
@@ -158,7 +155,6 @@ export function usePermissions(): UsePermissionsResult {
       setState((prev) => ({
         ...prev,
         camera: results.camera?.status ?? null,
-        isRequesting: false,
       }));
       
       return allGranted;
