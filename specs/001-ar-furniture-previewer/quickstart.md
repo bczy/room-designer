@@ -132,7 +132,7 @@ After build completes:
 3. Start the development server:
 
 ```bash
-npx expo start --dev-client
+yarn expo start --dev-client
 ```
 
 ### Running on Simulators
@@ -140,20 +140,20 @@ npx expo start --dev-client
 **iOS Simulator** (macOS only):
 ```bash
 # Start Metro bundler
-npx expo start --dev-client
+yarn expo start --dev-client
 
 # In another terminal, run on simulator
-npx expo run:ios
+yarn expo run:ios
 ```
 
 **Android Emulator**:
 ```bash
 # Ensure emulator is running
 # Start Metro bundler
-npx expo start --dev-client
+yarn expo start --dev-client
 
 # Run on emulator
-npx expo run:android
+yarn expo run:android
 ```
 
 ### Testing on Physical Devices
@@ -311,7 +311,7 @@ Configure WebView URL in development:
 
 ```bash
 # Clear Metro cache
-npx expo start --clear
+yarn expo start --clear
 ```
 
 ### Issue: iOS pod install fails
