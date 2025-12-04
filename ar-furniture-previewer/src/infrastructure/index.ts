@@ -14,17 +14,32 @@ export {
 
 // Storage
 export {
-  getItem,
-  setItem,
-  removeItem,
-  clear,
+  readFromStorage,
+  writeToStorage,
+  removeFromStorage,
   getModelIndex,
-  setModelIndex,
+  saveModelIndex,
   getSceneIndex,
-  setSceneIndex,
-  getAppSettings,
-  setAppSettings,
+  saveSceneIndex,
+  getSettings,
+  saveSettings,
+  isOnboardingComplete,
+  markOnboardingComplete,
+  clearAllData,
+  addModelToIndex,
+  updateModelInIndex,
+  removeModelFromIndex,
+  addSceneToIndex,
+  updateSceneInIndex,
+  removeSceneFromIndex,
+  DEFAULT_SETTINGS,
+  DEFAULT_MODEL_INDEX,
+  DEFAULT_SCENE_INDEX,
+  StorageError,
+  STORAGE_KEYS,
 } from './storage/asyncStorageHelpers';
+
+export type { AppSettings } from './storage/asyncStorageHelpers';
 
 // Permissions
 export {
@@ -43,5 +58,6 @@ export type {
 } from './permissions';
 
 // WebView
-export { WebViewBridge } from './webview/ARWebViewBridge';
-export { MessageHandlerRegistry } from './webview/messageHandlers';
+export { ARWebViewBridge, arWebViewBridge } from './webview/ARWebViewBridge';
+export { messageHandlers } from './webview/messageHandlers';
+export type { TypedMessageHandler } from './webview/messageHandlers';

@@ -23,14 +23,19 @@ export {
   SCENE_LIMITS,
   AR_LIMITS,
   PERFORMANCE_LIMITS,
-  SCAN_LIMITS,
-  STORAGE_KEYS,
+  STORAGE_WARNINGS,
+  EXPORT,
 } from './limits';
 
 export {
+  BASE_PATHS,
   APP_PATHS,
-  FILE_PATHS,
-  getModelPath,
-  getThumbnailPath,
+  getModelPaths,
+  getScenePaths,
   getScanSessionPaths,
+  getImportStagingPath,
+  BUNDLED_ASSETS,
+  STORAGE_KEYS,
 } from './paths';
+
+export type { StorageKey } from './paths';

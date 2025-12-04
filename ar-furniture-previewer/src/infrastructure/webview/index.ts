@@ -6,5 +6,6 @@
  * @module infrastructure/webview
  */
 
-export { WebViewBridge } from './ARWebViewBridge';
-export { MessageHandlerRegistry } from './messageHandlers';
+export { ARWebViewBridge, arWebViewBridge } from './ARWebViewBridge';
+export { messageHandlers } from './messageHandlers';
+export type { TypedMessageHandler } from './messageHandlers';
