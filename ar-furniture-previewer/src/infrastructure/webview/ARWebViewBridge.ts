@@ -58,6 +58,7 @@ interface PendingRequest {
   resolve: (message: WebViewMessage) => void;
   reject: (error: Error) => void;
   timeout: ReturnType<typeof setTimeout>;
+  unsubscribe: () => void;
 }
 
 /**
@@ -83,9 +84,10 @@ export class ARWebViewBridge {
   detach(): void {
     this.webViewRef = null;
     this.isReady = false;
-    // Cancel pending requests
+    // Cancel pending requests and unsubscribe handlers to prevent memory leaks
     this.pendingRequests.forEach((pending, id) => {
       clearTimeout(pending.timeout);
+      pending.unsubscribe();
       pending.reject(new Error('Bridge detached'));
       this.pendingRequests.delete(id);
     });
@@ -144,20 +146,7 @@ export class ARWebViewBridge {
 
       const message = createMessage(type, payload);
 
-      // Set up timeout
-      const timeoutId = setTimeout(() => {
-        this.pendingRequests.delete(message.messageId);
-        reject(new Error(`Request timeout for ${type}`));
-      }, timeout);
-
-      // Store pending request
-      this.pendingRequests.set(message.messageId, {
-        resolve: msg => resolve(msg as R),
-        reject,
-        timeout: timeoutId,
-      });
-
-      // Register one-time handler for response
+      // Register one-time handler for response first to get unsubscribe function
       const unsubscribe = this.on(responseType, (response: WebViewMessage) => {
         // Match by message ID or just accept first response of this type
         const pending = this.pendingRequests.get(message.messageId);
@@ -165,8 +154,26 @@ export class ARWebViewBridge {
           clearTimeout(pending.timeout);
           this.pendingRequests.delete(message.messageId);
           pending.resolve(response);
-          unsubscribe();
+          pending.unsubscribe();
         }
+      });
+
+      // Set up timeout with unsubscribe to prevent memory leak
+      const timeoutId = setTimeout(() => {
+        const pending = this.pendingRequests.get(message.messageId);
+        if (pending != null) {
+          pending.unsubscribe();
+          this.pendingRequests.delete(message.messageId);
+        }
+        reject(new Error(`Request timeout for ${type}`));
+      }, timeout);
+
+      // Store pending request with unsubscribe function
+      this.pendingRequests.set(message.messageId, {
+        resolve: msg => resolve(msg as R),
+        reject,
+        timeout: timeoutId,
+        unsubscribe,
       });
 
       // Send the message
