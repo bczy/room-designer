@@ -11,7 +11,7 @@
 | Tool | Version | Purpose |
 |------|---------|---------|
 | Node.js | 18.x or 20.x LTS | JavaScript runtime |
-| npm | 9.x+ | Package manager |
+| Yarn | 1.22.x+ | Package manager (required) |
 | Watchman | Latest | File watching (macOS) |
 | Xcode | 15.x+ | iOS builds (macOS only) |
 | Android Studio | Hedgehog+ | Android builds & emulator |
@@ -41,13 +41,13 @@ cd ar-furniture-previewer
 
 ```bash
 # Install Node.js dependencies
-npm install
+yarn install
 
 # Install iOS dependencies (macOS only)
 cd ios && pod install && cd ..
 
 # Install EAS CLI globally
-npm install -g eas-cli
+yarn global add eas-cli
 ```
 
 ### 3. Configure Environment Variables
@@ -219,16 +219,16 @@ ar-furniture-previewer/
 
 ```bash
 # Run all unit tests
-npm test
+yarn test
 
 # Run tests in watch mode
-npm test -- --watch
+yarn test --watch
 
 # Run tests with coverage
-npm test -- --coverage
+yarn test --coverage
 
 # Run specific test file
-npm test -- src/core/services/__tests__/storage.test.ts
+yarn test src/core/services/__tests__/storage.test.ts
 ```
 
 ### E2E Tests with Detox
@@ -251,13 +251,13 @@ detox test --configuration android.emu.debug
 
 ```bash
 # Run ESLint
-npm run lint
+yarn lint
 
 # Fix auto-fixable issues
-npm run lint:fix
+yarn lint:fix
 
 # Run TypeScript type check
-npm run typecheck
+yarn typecheck
 ```
 
 ### Building for Production
@@ -284,7 +284,7 @@ The 8th Wall code runs in a WebView. During development:
 
 ```bash
 # Start WebView dev server (separate terminal)
-npm run web:dev
+yarn web:dev
 
 # This serves the /web directory on localhost:3000
 ```
