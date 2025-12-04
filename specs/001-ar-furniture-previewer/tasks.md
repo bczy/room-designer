@@ -15,7 +15,7 @@
 
 **Purpose**: Project initialization and React Native + Expo bare workflow setup
 
-- [ ] T001 Create project structure with Expo bare workflow: `yarn create expo-app ar-furniture-previewer --template bare-minimum` (FR-051: Yarn required)
+- [X] T001 Create project structure with Expo bare workflow: `yarn create expo-app ar-furniture-previewer --template bare-minimum` (FR-051: Yarn required)
 - [ ] T002 Configure TypeScript strict mode in tsconfig.json
 - [ ] T003 [P] Install core dependencies: react-navigation, zustand, react-native-webview, react-native-fs
 - [ ] T004 [P] Configure ESLint + Prettier with React Native rules in .eslintrc.js and .prettierrc
