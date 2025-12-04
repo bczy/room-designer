@@ -402,7 +402,7 @@ After Phase 2 completes (user stories can run in parallel):
   US4 (starts after US1 AR components ready)
 
 Phase 8 (all tasks marked [P] are parallelizable):
-  T108 ‖ T109 ‖ T110 ‖ T111 ‖ T112 ‖ T113 ‖ T114 ‖ T115 ‖ T116 ‖ T117 ‖ T118 ‖ T119
+  T134 ‖ T135 ‖ T136 ‖ T137 ‖ T138 ‖ T139 ‖ T140 ‖ T141 ‖ T142 ‖ T143 ‖ T144 ‖ T145
 ```
 
 ---
