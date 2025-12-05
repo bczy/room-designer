@@ -37,6 +37,46 @@ AR Furniture Previewer is a cross-platform mobile application (iOS & Android) th
 
 **Gate Result**: ✅ PASS - No violations. Proceeding to Phase 0.
 
+---
+
+## ⚠️ TDD Enforcement (MANDATORY)
+
+**Test-Driven Development is NON-NEGOTIABLE for this project.**
+
+### TDD Workflow (Red-Green-Refactor)
+
+Every implementation task MUST follow this cycle:
+
+1. **🔴 RED**: Write a failing test that defines the expected behavior
+2. **🟢 GREEN**: Write the minimum code to make the test pass
+3. **🔵 REFACTOR**: Improve code quality while keeping tests green
+
+### Enforcement Rules
+
+| Rule | Description | Consequence of Violation |
+|------|-------------|-------------------------|
+| **Tests First** | No implementation PR can be merged without corresponding tests | PR will be rejected |
+| **Coverage Gate** | PRs must maintain ≥80% coverage for business logic | CI will fail |
+| **Critical Paths** | 100% coverage required for: stores, services, WebView bridge | Manual review required |
+| **Test Before Code** | Test file must be created BEFORE implementation file | PR review will check git history |
+
+### PR Checklist (Required)
+
+Every implementation PR MUST include:
+
+- [ ] Test file(s) created before implementation
+- [ ] All tests passing (`yarn test`)
+- [ ] Coverage meets threshold (`yarn test --coverage`)
+- [ ] Test file git commit predates implementation commit (for new features)
+
+### Exemptions
+
+**None.** There are no exceptions to TDD for this project.
+
+If infrastructure code was implemented without tests (e.g., Phase 2), a remediation issue MUST be created and resolved before proceeding to the next phase.
+
+---
+
 ## Project Structure
 
 ### Documentation (this feature)

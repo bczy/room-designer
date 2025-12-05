@@ -11,6 +11,19 @@
 
 ---
 
+## ⚠️ TDD Rules (MANDATORY)
+
+**All implementation tasks MUST follow Test-Driven Development:**
+
+1. **Test tasks** (marked with "Unit tests for..." or "Integration tests for...") MUST be completed FIRST
+2. **Implementation tasks** can only begin AFTER their corresponding test task is complete
+3. **PRs** must include test file commits that predate implementation commits
+4. **Coverage gate**: `yarn test --coverage` must show ≥80% for business logic
+
+**Violation of these rules will result in PR rejection.**
+
+---
+
 ## Phase 1: Setup (Shared Infrastructure)
 
 **Purpose**: Project initialization and React Native + Expo bare workflow setup
@@ -85,7 +98,20 @@
 - [X] T032a Migrate ESLint from legacy .eslintrc.js to ESLint 9 flat config in eslint.config.js (remove incompatible eslint-plugin-react-native, update package.json lint scripts)
 - [X] T032b Run `yarn typecheck` and `yarn lint` to validate all Phase 2 code passes strict TypeScript and ESLint checks
 
-**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+### TDD Remediation (BLOCKING)
+
+⚠️ **Phase 2 was implemented without TDD. The following tests MUST be written before Phase 3 begins.**
+
+- [ ] T032c [P] Write unit tests for stores: useSettingsStore.test.ts, useModelStore.test.ts, useSceneStore.test.ts, useARStore.test.ts
+- [ ] T032d [P] Write unit tests for infrastructure: FileSystemAdapter.test.ts, asyncStorageHelpers.test.ts
+- [ ] T032e [P] Write unit tests for WebView bridge: ARWebViewBridge.test.ts, messageHandlers.test.ts
+- [ ] T032f [P] Write unit tests for permissions: PermissionsAdapter.test.ts, usePermissions.test.ts
+- [ ] T032g [P] Write unit tests for components: Button.test.tsx, Card.test.tsx, Modal.test.tsx, SkeletonLoader.test.tsx
+- [ ] T032h Run `yarn test --coverage` and verify ≥80% coverage for all Phase 2 code
+
+**🚫 GATE: Phase 3 cannot begin until T032c-T032h are complete and coverage threshold is met.**
+
+**Checkpoint**: Foundation ready with test coverage - user story implementation can now begin in parallel
 
 ---
 
@@ -96,6 +122,8 @@
 **Independent Test**: Launch app → grant camera → select model from library → tap to place in AR → pinch/drag/rotate model
 
 ### Tests for User Story 1 (TDD - Write FIRST, must FAIL before implementation)
+
+⚠️ **TDD MANDATORY**: Each test task MUST be completed and committed BEFORE its corresponding implementation task.
 
 - [ ] T033 [P] [US1] Unit tests for ModelStorageService in tests/unit/services/ModelStorageService.test.ts (getAllModels, getModel, canAddModel)
 - [ ] T034 [P] [US1] Unit tests for BundledAssetsService in tests/unit/services/BundledAssetsService.test.ts (copy bundled files)
