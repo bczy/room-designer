@@ -4,6 +4,14 @@ node_modules/
 # Build outputs
 dist/
 build/
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # Logs
 *.log
@@ -16,6 +24,8 @@ npm-debug.log*
 
 # IDE
 .idea/
+yarn-debug.log*
+yarn-error.log*
 
 # OS files
 .DS_Store
@@ -23,3 +33,9 @@ Thumbs.db
 
 # Package manager locks (optional, comment out if you want to track)
 # package-lock.json
+# IDE
+.idea/
+
+# Build output
+dist/
+build/
