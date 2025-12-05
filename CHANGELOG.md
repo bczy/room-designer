@@ -1,3 +1,23 @@
+# 1.0.0 (2025-12-05)
+
+
+### Bug Fixes
+
+* align photo requirements in spec - 20 minimum, 25-40 recommended ([3ca46b8](https://github.com/bczy/room-designer/commit/3ca46b864ade33cdfafa47105832a853f006625e))
+* correct barrel export mismatches in infrastructure and constants modules ([42fa94a](https://github.com/bczy/room-designer/commit/42fa94acc05e41539f37080d426a0bfa06fd8cf3))
+* prevent memory leak by unsubscribing handler on timeout and detach ([679f22c](https://github.com/bczy/room-designer/commit/679f22c5fd6b689356b38edc5e6bc1ffc48ac57c))
+* remove redundant state updates from usePermissions hook ([a0f0da8](https://github.com/bczy/room-designer/commit/a0f0da8a5929aabe8cd719736a45be876f3a2e19))
+* replace all npm/npx with yarn per FR-051 ([df3b39f](https://github.com/bczy/room-designer/commit/df3b39f5cd825dee1eed249c27e693bd9f498dd5))
+* replace gap property with margin-based spacing in Modal component for wider React Native compatibility ([c4fe44d](https://github.com/bczy/room-designer/commit/c4fe44deb015b32261bf433eb4406e207a7e4f7f))
+* **tooling:** migrate ESLint to v9 flat config and validate Phase 2 code ([3205310](https://github.com/bczy/room-designer/commit/320531020b6424d2c16b8371ac8ea02dcd4d87bb)), closes [#163](https://github.com/bczy/room-designer/issues/163) [#164](https://github.com/bczy/room-designer/issues/164)
+
+
+### Features
+
+* **Phase 1:** complete project setup (T001-T009) ([9a85a9b](https://github.com/bczy/room-designer/commit/9a85a9b5f23a5d42d40b0bda5143b027a1d7fdad))
+* **phase-2:** implement foundational infrastructure (T010-T032) ([c17b9bb](https://github.com/bczy/room-designer/commit/c17b9bbcc8a6616aee5e9ec2d09ff34ddd5f9d1c))
+* **T001:** create Expo bare workflow project structure ([d06b8f2](https://github.com/bczy/room-designer/commit/d06b8f22f59173eb99dc7f3e39b1813613fd2a1f))
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

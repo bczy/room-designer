@@ -1,6 +1,6 @@
 {
   "name": "room-designer",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Room Designer Application",
   "private": true,
   "scripts": {
@@ -17,7 +17,6 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
-    
     "@commitlint/cli": "^19.x",
     "@commitlint/config-conventional": "^19.x",
     "husky": "^9.x"
