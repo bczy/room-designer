@@ -1,9 +1,9 @@
 /**
  * FileSystem Adapter
- * 
+ *
  * Wrapper around react-native-fs with typed operations.
  * Per T017: Implement storage infrastructure.
- * 
+ *
  * @module infrastructure/filesystem/FileSystemAdapter
  */
 
@@ -235,7 +235,10 @@ export class FileSystemAdapter {
   /**
    * Validate file size against limits.
    */
-  async validateFileSize(path: string, maxSize: number = MODEL_LIMITS.MAX_GLB_SIZE_BYTES): Promise<{
+  async validateFileSize(
+    path: string,
+    maxSize: number = MODEL_LIMITS.MAX_GLB_SIZE_BYTES
+  ): Promise<{
     valid: boolean;
     size: number;
   }> {

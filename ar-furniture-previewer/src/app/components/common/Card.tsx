@@ -1,19 +1,14 @@
 /**
  * Card Component
- * 
+ *
  * Reusable card container with variants.
  * Per T030: Create Card component.
- * 
+ *
  * @module app/components/common/Card
  */
 
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ViewStyle,
-} from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native';
 import { THEME } from '@core/constants/theme';
 
 /**
@@ -104,7 +99,7 @@ export function Card({
     ...(style as object),
   };
 
-  if (onPress != null) {
+  if (onPress !== null) {
     return (
       <TouchableOpacity
         style={cardStyle}

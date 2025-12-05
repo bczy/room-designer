@@ -1,8 +1,8 @@
 /**
  * File Paths
- * 
+ *
  * Storage paths per research.md and FR-018.
- * 
+ *
  * @module core/constants/paths
  */
 
@@ -30,9 +30,7 @@ export const BASE_PATHS = {
 
   /** Bundled assets directory */
   get bundle(): string {
-    return Platform.OS === 'ios'
-      ? RNFS.MainBundlePath
-      : RNFS.DocumentDirectoryPath;
+    return Platform.OS === 'ios' ? RNFS.MainBundlePath : RNFS.DocumentDirectoryPath;
   },
 } as const;
 
@@ -130,9 +128,7 @@ export function getImportStagingPath(filename: string): string {
 export const BUNDLED_ASSETS = {
   /** Bundled models directory */
   get models(): string {
-    return Platform.OS === 'ios'
-      ? `${RNFS.MainBundlePath}/assets/models`
-      : 'asset:/assets/models';
+    return Platform.OS === 'ios' ? `${RNFS.MainBundlePath}/assets/models` : 'asset:/assets/models';
   },
 
   /** Get path for a bundled model */

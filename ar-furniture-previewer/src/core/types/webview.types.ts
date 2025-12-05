@@ -1,9 +1,9 @@
 /**
  * WebView Bridge Types
- * 
+ *
  * Message protocol between React Native and 8th Wall WebView.
  * Based on contracts/webview-bridge.ts specification.
- * 
+ *
  * @module core/types/webview.types
  */
 

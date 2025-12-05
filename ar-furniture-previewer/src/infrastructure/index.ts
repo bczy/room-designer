@@ -1,16 +1,13 @@
 /**
  * Infrastructure Barrel Export
- * 
+ *
  * Central export for infrastructure modules.
- * 
+ *
  * @module infrastructure
  */
 
 // Filesystem
-export {
-  FileSystemAdapter,
-  fileSystem,
-} from './filesystem/FileSystemAdapter';
+export { FileSystemAdapter, fileSystem } from './filesystem/FileSystemAdapter';
 
 // Storage
 export {
@@ -51,11 +48,7 @@ export {
   usePermissions,
 } from './permissions';
 
-export type {
-  AppPermission,
-  PermissionStatus,
-  PermissionResult,
-} from './permissions';
+export type { AppPermission, PermissionStatus, PermissionResult } from './permissions';
 
 // WebView
 export { ARWebViewBridge, arWebViewBridge } from './webview/ARWebViewBridge';

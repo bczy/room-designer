@@ -1,8 +1,8 @@
 /**
  * Navigation Exports
- * 
+ *
  * Barrel export for navigation components.
- * 
+ *
  * @module app/navigation
  */
 

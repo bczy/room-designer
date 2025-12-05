@@ -1,9 +1,9 @@
 /**
  * AR WebView Bridge
- * 
+ *
  * Bridge for communication between React Native and 8th Wall WebView.
  * Per T019: Implement WebViewBridge contract.
- * 
+ *
  * @module infrastructure/webview/ARWebViewBridge
  */
 
@@ -111,7 +111,8 @@ export class ARWebViewBridge {
    * Send a message to the WebView.
    */
   send<T extends RNToWebViewMessageType, P>(type: T, payload: P): void {
-    if (this.webViewRef?.current == null) {
+    const webView = this.webViewRef?.current;
+    if (!webView) {
       console.warn('[ARWebViewBridge] WebView not attached');
       return;
     }
@@ -126,7 +127,7 @@ export class ARWebViewBridge {
       true;
     `;
 
-    this.webViewRef.current.injectJavaScript(script);
+    webView.injectJavaScript(script);
   }
 
   /**
@@ -139,7 +140,7 @@ export class ARWebViewBridge {
     timeout = 10000
   ): Promise<R> {
     return new Promise((resolve, reject) => {
-      if (this.webViewRef?.current == null) {
+      if (!this.webViewRef?.current) {
         reject(new Error('WebView not attached'));
         return;
       }
@@ -150,7 +151,7 @@ export class ARWebViewBridge {
       const unsubscribe = this.on(responseType, (response: WebViewMessage) => {
         // Match by message ID or just accept first response of this type
         const pending = this.pendingRequests.get(message.messageId);
-        if (pending != null) {
+        if (pending) {
           clearTimeout(pending.timeout);
           this.pendingRequests.delete(message.messageId);
           pending.resolve(response);
@@ -161,7 +162,7 @@ export class ARWebViewBridge {
       // Set up timeout with unsubscribe to prevent memory leak
       const timeoutId = setTimeout(() => {
         const pending = this.pendingRequests.get(message.messageId);
-        if (pending != null) {
+        if (pending) {
           pending.unsubscribe();
           this.pendingRequests.delete(message.messageId);
         }
@@ -186,7 +187,7 @@ export class ARWebViewBridge {
         true;
       `;
 
-      this.webViewRef.current.injectJavaScript(script);
+      this.webViewRef.current?.injectJavaScript(script);
     });
   }
 
@@ -213,14 +214,14 @@ export class ARWebViewBridge {
    */
   on(type: WebViewToRNMessageType, handler: WebViewMessageHandler): Unsubscribe {
     let typeHandlers = this.handlers.get(type);
-    if (typeHandlers == null) {
+    if (!typeHandlers) {
       typeHandlers = new Set();
       this.handlers.set(type, typeHandlers);
     }
     typeHandlers.add(handler);
 
     return () => {
-      typeHandlers?.delete(handler);
+      typeHandlers.delete(handler);
     };
   }
 

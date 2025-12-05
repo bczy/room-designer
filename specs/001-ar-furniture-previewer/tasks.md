@@ -18,7 +18,7 @@
 - [X] T001 Create project structure with Expo bare workflow: `yarn create expo-app ar-furniture-previewer --template bare-minimum` (FR-051: Yarn required)
 - [X] T002 Configure TypeScript strict mode in tsconfig.json
 - [X] T003 [P] Install core dependencies: react-navigation, zustand, react-native-webview, react-native-fs
-- [X] T004 [P] Configure ESLint + Prettier with React Native rules in .eslintrc.js and .prettierrc
+- [X] T004 [P] Configure ESLint 9 flat config + Prettier with React Native rules in eslint.config.js and .prettierrc
 - [X] T005 [P] Create directory structure per plan.md: src/app/, src/core/, src/infrastructure/, web/, tests/
 - [X] T006 [P] Configure Jest with React Native Testing Library in jest.config.js
 - [X] T007 [P] Configure Detox for E2E testing in detox.config.js
@@ -79,6 +79,11 @@
 - [X] T030 [P] Create Card component in src/app/components/common/Card.tsx (elevation, border radius per theme)
 - [X] T031 [P] Create Modal component in src/app/components/common/Modal.tsx (slide-up sheet)
 - [X] T032 [P] Create SkeletonLoader component in src/app/components/common/SkeletonLoader.tsx (loading states >200ms)
+
+### Code Quality Validation
+
+- [X] T032a Migrate ESLint from legacy .eslintrc.js to ESLint 9 flat config in eslint.config.js (remove incompatible eslint-plugin-react-native, update package.json lint scripts)
+- [X] T032b Run `yarn typecheck` and `yarn lint` to validate all Phase 2 code passes strict TypeScript and ESLint checks
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 

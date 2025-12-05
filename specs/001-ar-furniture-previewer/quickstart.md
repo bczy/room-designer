@@ -249,6 +249,8 @@ detox test --configuration android.emu.debug
 
 ### Linting & Type Checking
 
+> **Note**: This project uses ESLint 9 with flat config format (`eslint.config.js`), not the legacy `.eslintrc.js` format.
+
 ```bash
 # Run ESLint
 yarn lint

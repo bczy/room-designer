@@ -1,8 +1,8 @@
 /**
  * Screen Exports
- * 
+ *
  * Barrel export for all screen components.
- * 
+ *
  * @module app/screens
  */
 

@@ -1,9 +1,9 @@
 /**
  * Button Component
- * 
+ *
  * Reusable button with variants and states.
  * Per T029: Create Button component.
- * 
+ *
  * @module app/components/common/Button
  */
 
@@ -207,10 +207,7 @@ export function Button({
       {...rest}
     >
       {loading ? (
-        <ActivityIndicator
-          size="small"
-          color={variantStyles.text.color}
-        />
+        <ActivityIndicator size="small" color={variantStyles.text.color} />
       ) : (
         <>
           {icon}
@@ -219,7 +216,7 @@ export function Button({
               styles.text,
               variantStyles.text,
               sizeStyles.text,
-              icon != null && styles.textWithIcon,
+              icon !== null && styles.textWithIcon,
               textStyle,
             ]}
           >

@@ -1,9 +1,9 @@
 /**
  * Model Store
- * 
+ *
  * Zustand store for model library state.
  * Per T024: Create useModelStore skeleton.
- * 
+ *
  * @module core/stores/useModelStore
  */
 
@@ -23,12 +23,12 @@ import { MODEL_LIMITS } from '@core/constants/limits';
 interface ModelState {
   // Data
   models: Model[];
-  
+
   // UI State
   selectedModelId: string | null;
   isLoading: boolean;
   error: string | null;
-  
+
   // Filter & Sort
   filter: ModelFilter;
   sortField: ModelSortField;
@@ -44,25 +44,25 @@ interface ModelActions {
   addModel: (model: Model) => void;
   updateModel: (model: Model) => void;
   removeModel: (modelId: string) => void;
-  
+
   // Selection
   selectModel: (modelId: string | null) => void;
-  
+
   // Loading state
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
-  
+
   // Filter & Sort
   setFilter: (filter: Partial<ModelFilter>) => void;
   clearFilter: () => void;
   setSort: (field: ModelSortField, direction: SortDirection) => void;
-  
+
   // Queries
   getModelById: (id: string) => Model | undefined;
   getFilteredModels: () => Model[];
   canAddModel: () => boolean;
   getModelCount: () => number;
-  
+
   // Reset
   reset: () => void;
 }
@@ -85,33 +85,32 @@ const initialState: ModelState = {
 export const useModelStore = create<ModelStore>()((set, get) => ({
   ...initialState,
 
-  setModels: (models) => set({ models }),
+  setModels: models => set({ models }),
 
-  addModel: (model) =>
-    set((state) => ({
+  addModel: model =>
+    set(state => ({
       models: [...state.models, model],
     })),
 
-  updateModel: (model) =>
-    set((state) => ({
-      models: state.models.map((m) => (m.id === model.id ? model : m)),
+  updateModel: model =>
+    set(state => ({
+      models: state.models.map(m => (m.id === model.id ? model : m)),
     })),
 
-  removeModel: (modelId) =>
-    set((state) => ({
-      models: state.models.filter((m) => m.id !== modelId),
-      selectedModelId:
-        state.selectedModelId === modelId ? null : state.selectedModelId,
+  removeModel: modelId =>
+    set(state => ({
+      models: state.models.filter(m => m.id !== modelId),
+      selectedModelId: state.selectedModelId === modelId ? null : state.selectedModelId,
     })),
 
-  selectModel: (modelId) => set({ selectedModelId: modelId }),
+  selectModel: modelId => set({ selectedModelId: modelId }),
 
-  setLoading: (isLoading) => set({ isLoading }),
+  setLoading: isLoading => set({ isLoading }),
 
-  setError: (error) => set({ error }),
+  setError: error => set({ error }),
 
-  setFilter: (filter) =>
-    set((state) => ({
+  setFilter: filter =>
+    set(state => ({
       filter: { ...state.filter, ...filter },
     })),
 
@@ -119,7 +118,7 @@ export const useModelStore = create<ModelStore>()((set, get) => ({
 
   setSort: (sortField, sortDirection) => set({ sortField, sortDirection }),
 
-  getModelById: (id) => get().models.find((m) => m.id === id),
+  getModelById: id => get().models.find(m => m.id === id),
 
   getFilteredModels: () => {
     const { models, filter, sortField, sortDirection } = get();
@@ -127,21 +126,23 @@ export const useModelStore = create<ModelStore>()((set, get) => ({
     let filtered = [...models];
 
     // Apply category filter
-    if (filter.category != null) {
-      filtered = filtered.filter((m) => m.category === filter.category);
+    if (filter.category !== null) {
+      filtered = filtered.filter(m => m.category === filter.category);
     }
 
     // Apply search filter
-    if (filter.searchQuery != null && filter.searchQuery.length > 0) {
+    if (
+      filter.searchQuery !== null &&
+      filter.searchQuery !== undefined &&
+      filter.searchQuery.length > 0
+    ) {
       const query = filter.searchQuery.toLowerCase();
-      filtered = filtered.filter((m) =>
-        m.name.toLowerCase().includes(query)
-      );
+      filtered = filtered.filter(m => m.name.toLowerCase().includes(query));
     }
 
     // Apply bundled filter
     if (filter.includeBundled === false) {
-      filtered = filtered.filter((m) => !m.isBundled);
+      filtered = filtered.filter(m => !m.isBundled);
     }
 
     // Sort
@@ -180,16 +181,14 @@ export const useModelStore = create<ModelStore>()((set, get) => ({
  * Hook to get selected model.
  */
 export function useSelectedModel(): Model | undefined {
-  const selectedModelId = useModelStore((state) => state.selectedModelId);
-  const getModelById = useModelStore((state) => state.getModelById);
-  return selectedModelId != null ? getModelById(selectedModelId) : undefined;
+  const selectedModelId = useModelStore(state => state.selectedModelId);
+  const getModelById = useModelStore(state => state.getModelById);
+  return selectedModelId !== null ? getModelById(selectedModelId) : undefined;
 }
 
 /**
  * Hook to get models by category.
  */
 export function useModelsByCategory(category: ModelCategory): Model[] {
-  return useModelStore((state) =>
-    state.models.filter((m) => m.category === category)
-  );
+  return useModelStore(state => state.models.filter(m => m.category === category));
 }

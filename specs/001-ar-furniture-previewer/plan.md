@@ -13,6 +13,7 @@ AR Furniture Previewer is a cross-platform mobile application (iOS & Android) th
 **Primary Dependencies**: React Native 0.73+, Expo SDK 50+ (Bare Workflow), React Navigation v6, Zustand, react-native-webview, 8th Wall WebAR, Three.js, Niantic Lightship VPS/Scanning  
 **Storage**: AsyncStorage for metadata, react-native-fs for GLB/thumbnail files, local file system (/Documents/ARFurniture/)  
 **Testing**: Jest + React Native Testing Library (unit), Detox (E2E), visual regression via Storybook  
+**Linting**: ESLint 9.x (flat config format in eslint.config.js), Prettier 3.x  
 **Target Platform**: iOS 14+, Android 8.0+ (API 26+)  
 **Project Type**: Mobile (React Native)  
 **Performance Goals**: 30 FPS minimum in AR, <3s app launch, <2s model load (<10MB), <5min scan processing  

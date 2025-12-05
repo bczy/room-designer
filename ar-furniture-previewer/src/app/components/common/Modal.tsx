@@ -1,9 +1,9 @@
 /**
  * Modal Component
- * 
+ *
  * Reusable modal dialog.
  * Per T031: Create Modal component.
- * 
+ *
  * @module app/components/common/Modal
  */
 
@@ -59,7 +59,7 @@ export function Modal({
   contentStyle,
   fullScreen = false,
 }: ModalProps): React.ReactElement {
-  const handleBackdropPress = () => {
+  const handleBackdropPress = (): void => {
     if (closeOnBackdrop) {
       onClose();
     }
@@ -77,22 +77,11 @@ export function Modal({
         style={styles.wrapper}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <Pressable
-          style={styles.backdrop}
-          onPress={handleBackdropPress}
-        />
-        <View
-          style={[
-            styles.container,
-            fullScreen && styles.fullScreen,
-            contentStyle,
-          ]}
-        >
-          {(title != null || showCloseButton) && (
+        <Pressable style={styles.backdrop} onPress={handleBackdropPress} />
+        <View style={[styles.container, fullScreen && styles.fullScreen, contentStyle]}>
+          {(title !== null || showCloseButton) && (
             <View style={styles.header}>
-              {title != null && (
-                <Text style={styles.title}>{title}</Text>
-              )}
+              {title !== null && <Text style={styles.title}>{title}</Text>}
               {showCloseButton && (
                 <TouchableOpacity
                   style={styles.closeButton}
@@ -106,9 +95,7 @@ export function Modal({
               )}
             </View>
           )}
-          <View style={styles.content}>
-            {children}
-          </View>
+          <View style={styles.content}>{children}</View>
         </View>
       </KeyboardAvoidingView>
     </RNModal>
@@ -141,11 +128,7 @@ export function ModalActions({
     return React.cloneElement(typedChild, { style: combinedStyle });
   });
 
-  return (
-    <View style={[styles.actions, style]}>
-      {spacedChildren}
-    </View>
-  );
+  return <View style={[styles.actions, style]}>{spacedChildren}</View>;
 }
 
 const styles = StyleSheet.create({

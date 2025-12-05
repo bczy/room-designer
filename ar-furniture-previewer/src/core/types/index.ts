@@ -1,8 +1,8 @@
 /**
  * Type Definitions Barrel Export
- * 
+ *
  * Central export for all core types.
- * 
+ *
  * @module core/types
  */
 

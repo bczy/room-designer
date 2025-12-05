@@ -1,8 +1,8 @@
 /**
  * Core Module Exports
- * 
+ *
  * Barrel export for core module.
- * 
+ *
  * @module core
  */
 

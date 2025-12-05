@@ -1,9 +1,9 @@
 /**
  * AR Screen
- * 
+ *
  * Main AR view screen with 8th Wall WebView.
  * Per T022: Create placeholder screen components.
- * 
+ *
  * @module app/screens/ARScreen
  */
 
@@ -21,14 +21,10 @@ export function ARScreen(): React.ReactElement {
       <View style={styles.content}>
         <View style={styles.placeholder}>
           <Text style={styles.title}>AR View</Text>
-          <Text style={styles.subtitle}>
-            8th Wall WebView will be rendered here
-          </Text>
+          <Text style={styles.subtitle}>8th Wall WebView will be rendered here</Text>
           <Text style={styles.description}>
-            • Surface detection{'\n'}
-            • Model placement{'\n'}
-            • Gesture controls{'\n'}
-            • Real-time preview
+            • Surface detection{'\n'}• Model placement{'\n'}• Gesture controls{'\n'}• Real-time
+            preview
           </Text>
         </View>
       </View>

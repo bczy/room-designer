@@ -1,8 +1,8 @@
 /**
  * Storage Exports
- * 
+ *
  * Barrel export for storage utilities.
- * 
+ *
  * @module infrastructure/storage
  */
 

@@ -1,9 +1,9 @@
 /**
  * Scene Types
- * 
+ *
  * Types for saved AR scenes and placed objects.
  * Based on data-model.md specification.
- * 
+ *
  * @module core/types/scene.types
  */
 
@@ -11,9 +11,9 @@
  * Anchor strategy for scene persistence.
  */
 export type AnchorType =
-  | 'VPS'             // Lightship VPS persistent anchor
+  | 'VPS' // Lightship VPS persistent anchor
   | 'DEVICE_RELATIVE' // Relative to device at save time
-  | 'MANUAL';         // User positions manually on restore
+  | 'MANUAL'; // User positions manually on restore
 
 /**
  * 3D transformation data for placed objects.
