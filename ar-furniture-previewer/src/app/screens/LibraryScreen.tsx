@@ -1,9 +1,9 @@
 /**
  * Library Screen
- * 
+ *
  * Model library management screen.
  * Per T022: Create placeholder screen components.
- * 
+ *
  * @module app/screens/LibraryScreen
  */
 
@@ -24,14 +24,10 @@ export function LibraryScreen(): React.ReactElement {
       <View style={styles.content}>
         <View style={styles.placeholder}>
           <Text style={styles.title}>Your Models</Text>
-          <Text style={styles.subtitle}>
-            GLB models and scanned objects appear here
-          </Text>
+          <Text style={styles.subtitle}>GLB models and scanned objects appear here</Text>
           <Text style={styles.description}>
-            • Import GLB files{'\n'}
-            • Scan real objects{'\n'}
-            • Bundled furniture{'\n'}
-            • Search & filter
+            • Import GLB files{'\n'}• Scan real objects{'\n'}• Bundled furniture{'\n'}• Search &
+            filter
           </Text>
         </View>
       </View>

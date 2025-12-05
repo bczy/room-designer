@@ -1,8 +1,8 @@
 /**
  * Theme Constants
- * 
+ *
  * Design system values per FR-036, FR-037, FR-038.
- * 
+ *
  * @module core/constants/theme
  */
 

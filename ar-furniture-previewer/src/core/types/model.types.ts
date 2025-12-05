@@ -1,9 +1,9 @@
 /**
  * Model Types
- * 
+ *
  * Core types for 3D furniture models in the library.
  * Based on data-model.md specification.
- * 
+ *
  * @module core/types/model.types
  */
 
@@ -11,13 +11,7 @@
  * Furniture category enumeration.
  * Per FR-020: Chair, Table, Sofa, Cabinet, Lamp, Custom
  */
-export type ModelCategory =
-  | 'CHAIR'
-  | 'TABLE'
-  | 'SOFA'
-  | 'CABINET'
-  | 'LAMP'
-  | 'CUSTOM';
+export type ModelCategory = 'CHAIR' | 'TABLE' | 'SOFA' | 'CABINET' | 'LAMP' | 'CUSTOM';
 
 /**
  * Axis-aligned bounding box for model dimensions.

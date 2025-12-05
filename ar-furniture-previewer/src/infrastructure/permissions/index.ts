@@ -1,8 +1,8 @@
 /**
  * Permissions Exports
- * 
+ *
  * Barrel export for permissions utilities.
- * 
+ *
  * @module infrastructure/permissions
  */
 
@@ -14,10 +14,6 @@ export {
   requestARPermissions,
 } from './PermissionsAdapter';
 
-export type {
-  AppPermission,
-  PermissionStatus,
-  PermissionResult,
-} from './PermissionsAdapter';
+export type { AppPermission, PermissionStatus, PermissionResult } from './PermissionsAdapter';
 
 export { usePermissions } from './usePermissions';

@@ -1,9 +1,9 @@
 /**
  * usePermissions Hook
- * 
+ *
  * React hook for managing app permissions.
  * Per T028: Create usePermissions hook.
- * 
+ *
  * @module infrastructure/permissions/usePermissions
  */
 
@@ -36,11 +36,11 @@ interface UsePermissionsResult extends PermissionsState {
   // Check permissions
   checkPermission: (permission: AppPermission) => Promise<PermissionResult>;
   checkARPermissions: () => Promise<boolean>;
-  
+
   // Request permissions
   requestPermission: (permission: AppPermission) => Promise<PermissionResult>;
   requestARPermissions: () => Promise<boolean>;
-  
+
   // Utilities
   hasARPermissions: boolean;
   refresh: () => Promise<void>;
@@ -48,22 +48,22 @@ interface UsePermissionsResult extends PermissionsState {
 
 /**
  * Hook for managing app permissions.
- * 
+ *
  * @example
  * ```tsx
  * function ARView() {
  *   const { hasARPermissions, requestARPermissions, isRequesting } = usePermissions();
- *   
+ *
  *   if (!hasARPermissions) {
  *     return (
- *       <Button 
- *         title="Enable Camera" 
+ *       <Button
+ *         title="Enable Camera"
  *         onPress={requestARPermissions}
  *         disabled={isRequesting}
  *       />
  *     );
  *   }
- *   
+ *
  *   return <ARCamera />;
  * }
  * ```
@@ -82,19 +82,19 @@ export function usePermissions(): UsePermissionsResult {
    */
   const checkSinglePermission = useCallback(
     async (permission: AppPermission): Promise<PermissionResult> => {
-      setState((prev) => ({ ...prev, isChecking: true }));
-      
+      setState(prev => ({ ...prev, isChecking: true }));
+
       try {
         const result = await checkPermission(permission);
-        
-        setState((prev) => ({
+
+        setState(prev => ({
           ...prev,
           [permission]: result.status,
         }));
-        
+
         return result;
       } finally {
-        setState((prev) => ({ ...prev, isChecking: false }));
+        setState(prev => ({ ...prev, isChecking: false }));
       }
     },
     []
@@ -105,19 +105,19 @@ export function usePermissions(): UsePermissionsResult {
    */
   const requestSinglePermission = useCallback(
     async (permission: AppPermission): Promise<PermissionResult> => {
-      setState((prev) => ({ ...prev, isRequesting: true }));
-      
+      setState(prev => ({ ...prev, isRequesting: true }));
+
       try {
         const result = await requestPermission(permission);
-        
-        setState((prev) => ({
+
+        setState(prev => ({
           ...prev,
           [permission]: result.status,
         }));
-        
+
         return result;
       } finally {
-        setState((prev) => ({ ...prev, isRequesting: false }));
+        setState(prev => ({ ...prev, isRequesting: false }));
       }
     },
     []
@@ -127,19 +127,19 @@ export function usePermissions(): UsePermissionsResult {
    * Check all AR permissions.
    */
   const checkAR = useCallback(async (): Promise<boolean> => {
-    setState((prev) => ({ ...prev, isChecking: true }));
-    
+    setState(prev => ({ ...prev, isChecking: true }));
+
     try {
       const { allGranted, results } = await checkARPermissions();
-      
-      setState((prev) => ({
+
+      setState(prev => ({
         ...prev,
         camera: results.camera?.status ?? null,
       }));
-      
+
       return allGranted;
     } finally {
-      setState((prev) => ({ ...prev, isChecking: false }));
+      setState(prev => ({ ...prev, isChecking: false }));
     }
   }, []);
 
@@ -147,19 +147,19 @@ export function usePermissions(): UsePermissionsResult {
    * Request all AR permissions.
    */
   const requestAR = useCallback(async (): Promise<boolean> => {
-    setState((prev) => ({ ...prev, isRequesting: true }));
-    
+    setState(prev => ({ ...prev, isRequesting: true }));
+
     try {
       const { allGranted, results } = await requestARPermissions();
-      
-      setState((prev) => ({
+
+      setState(prev => ({
         ...prev,
         camera: results.camera?.status ?? null,
       }));
-      
+
       return allGranted;
     } finally {
-      setState((prev) => ({ ...prev, isRequesting: false }));
+      setState(prev => ({ ...prev, isRequesting: false }));
     }
   }, []);
 

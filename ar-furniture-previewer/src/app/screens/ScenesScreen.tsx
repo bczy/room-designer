@@ -1,9 +1,9 @@
 /**
  * Scenes Screen
- * 
+ *
  * Saved scenes management screen.
  * Per T022: Create placeholder screen components.
- * 
+ *
  * @module app/screens/ScenesScreen
  */
 
@@ -24,14 +24,10 @@ export function ScenesScreen(): React.ReactElement {
       <View style={styles.content}>
         <View style={styles.placeholder}>
           <Text style={styles.title}>Your Scenes</Text>
-          <Text style={styles.subtitle}>
-            Saved AR room arrangements appear here
-          </Text>
+          <Text style={styles.subtitle}>Saved AR room arrangements appear here</Text>
           <Text style={styles.description}>
-            • Scene thumbnails{'\n'}
-            • VPS anchor support{'\n'}
-            • Restore in AR view{'\n'}
-            • Export & share
+            • Scene thumbnails{'\n'}• VPS anchor support{'\n'}• Restore in AR view{'\n'}• Export &
+            share
           </Text>
         </View>
       </View>

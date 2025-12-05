@@ -1,19 +1,14 @@
 /**
  * Scene Store
- * 
+ *
  * Zustand store for scene composition and management.
  * Per T025: Create useSceneStore skeleton.
- * 
+ *
  * @module core/stores/useSceneStore
  */
 
 import { create } from 'zustand';
-import type {
-  SavedScene,
-  PlacedObject,
-  Transform,
-  ScanSession,
-} from '@core/types/scene.types';
+import type { SavedScene, PlacedObject, Transform, ScanSession } from '@core/types/scene.types';
 import { SCENE_LIMITS } from '@core/constants/limits';
 
 /**
@@ -24,13 +19,13 @@ interface SceneState {
   currentScene: SavedScene | null;
   placedObjects: PlacedObject[];
   selectedObjectId: string | null;
-  
+
   // Saved scenes
   savedScenes: SavedScene[];
-  
+
   // Scan session
   scanSession: ScanSession | null;
-  
+
   // UI State
   isLoading: boolean;
   error: string | null;
@@ -47,28 +42,28 @@ interface SceneActions {
   saveScene: (name: string) => SavedScene;
   deleteScene: (sceneId: string) => void;
   setSavedScenes: (scenes: SavedScene[]) => void;
-  
+
   // Object management
   addObject: (object: PlacedObject) => void;
   updateObject: (objectId: string, updates: Partial<PlacedObject>) => void;
   updateObjectTransform: (objectId: string, transform: Transform) => void;
   removeObject: (objectId: string) => void;
   clearObjects: () => void;
-  
+
   // Selection
   selectObject: (objectId: string | null) => void;
-  
+
   // Scan session
   startScan: (session: ScanSession) => void;
   updateScan: (updates: Partial<ScanSession>) => void;
   endScan: () => void;
-  
+
   // State management
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   markDirty: () => void;
   markClean: () => void;
-  
+
   // Queries
   getObjectById: (id: string) => PlacedObject | undefined;
   getSceneById: (id: string) => SavedScene | undefined;
@@ -76,7 +71,7 @@ interface SceneActions {
   canSaveScene: () => boolean;
   getObjectCount: () => number;
   getSceneCount: () => number;
-  
+
   // Reset
   reset: () => void;
 }
@@ -115,7 +110,7 @@ export const useSceneStore = create<SceneStore>()((set, get) => ({
       isDirty: false,
     }),
 
-  loadScene: (scene) =>
+  loadScene: scene =>
     set({
       currentScene: scene,
       placedObjects: scene.objects,
@@ -123,10 +118,10 @@ export const useSceneStore = create<SceneStore>()((set, get) => ({
       isDirty: false,
     }),
 
-  saveScene: (name) => {
+  saveScene: name => {
     const state = get();
     const now = Date.now();
-    
+
     const scene: SavedScene = {
       id: state.currentScene?.id ?? generateId(),
       name,
@@ -137,54 +132,52 @@ export const useSceneStore = create<SceneStore>()((set, get) => ({
       updatedAt: now,
       anchorType: state.currentScene?.anchorType ?? 'DEVICE_RELATIVE',
     };
-    
-    set((s) => ({
+
+    set(s => ({
       currentScene: scene,
       savedScenes: s.currentScene
-        ? s.savedScenes.map((sc) => (sc.id === scene.id ? scene : sc))
+        ? s.savedScenes.map(sc => (sc.id === scene.id ? scene : sc))
         : [...s.savedScenes, scene],
       isDirty: false,
     }));
-    
+
     return scene;
   },
 
-  deleteScene: (sceneId) =>
-    set((state) => ({
-      savedScenes: state.savedScenes.filter((s) => s.id !== sceneId),
-      currentScene:
-        state.currentScene?.id === sceneId ? null : state.currentScene,
+  deleteScene: sceneId =>
+    set(state => ({
+      savedScenes: state.savedScenes.filter(s => s.id !== sceneId),
+      currentScene: state.currentScene?.id === sceneId ? null : state.currentScene,
     })),
 
-  setSavedScenes: (savedScenes) => set({ savedScenes }),
+  setSavedScenes: savedScenes => set({ savedScenes }),
 
-  addObject: (object) =>
-    set((state) => ({
+  addObject: object =>
+    set(state => ({
       placedObjects: [...state.placedObjects, object],
       isDirty: true,
     })),
 
   updateObject: (objectId, updates) =>
-    set((state) => ({
-      placedObjects: state.placedObjects.map((obj) =>
+    set(state => ({
+      placedObjects: state.placedObjects.map(obj =>
         obj.id === objectId ? { ...obj, ...updates } : obj
       ),
       isDirty: true,
     })),
 
   updateObjectTransform: (objectId, transform) =>
-    set((state) => ({
-      placedObjects: state.placedObjects.map((obj) =>
+    set(state => ({
+      placedObjects: state.placedObjects.map(obj =>
         obj.id === objectId ? { ...obj, transform } : obj
       ),
       isDirty: true,
     })),
 
-  removeObject: (objectId) =>
-    set((state) => ({
-      placedObjects: state.placedObjects.filter((obj) => obj.id !== objectId),
-      selectedObjectId:
-        state.selectedObjectId === objectId ? null : state.selectedObjectId,
+  removeObject: objectId =>
+    set(state => ({
+      placedObjects: state.placedObjects.filter(obj => obj.id !== objectId),
+      selectedObjectId: state.selectedObjectId === objectId ? null : state.selectedObjectId,
       isDirty: true,
     })),
 
@@ -195,37 +188,33 @@ export const useSceneStore = create<SceneStore>()((set, get) => ({
       isDirty: true,
     }),
 
-  selectObject: (objectId) => set({ selectedObjectId: objectId }),
+  selectObject: objectId => set({ selectedObjectId: objectId }),
 
-  startScan: (session) => set({ scanSession: session }),
+  startScan: session => set({ scanSession: session }),
 
-  updateScan: (updates) =>
-    set((state) => ({
-      scanSession: state.scanSession
-        ? { ...state.scanSession, ...updates }
-        : null,
+  updateScan: updates =>
+    set(state => ({
+      scanSession: state.scanSession ? { ...state.scanSession, ...updates } : null,
     })),
 
   endScan: () => set({ scanSession: null }),
 
-  setLoading: (isLoading) => set({ isLoading }),
+  setLoading: isLoading => set({ isLoading }),
 
-  setError: (error) => set({ error }),
+  setError: error => set({ error }),
 
   markDirty: () => set({ isDirty: true }),
 
   markClean: () => set({ isDirty: false }),
 
-  getObjectById: (id) => get().placedObjects.find((obj) => obj.id === id),
+  getObjectById: id => get().placedObjects.find(obj => obj.id === id),
 
-  getSceneById: (id) => get().savedScenes.find((s) => s.id === id),
+  getSceneById: id => get().savedScenes.find(s => s.id === id),
 
-  canAddObject: () =>
-    get().placedObjects.length < SCENE_LIMITS.MAX_OBJECTS_PER_SCENE,
+  canAddObject: () => get().placedObjects.length < SCENE_LIMITS.MAX_OBJECTS_PER_SCENE,
 
   canSaveScene: () =>
-    get().savedScenes.length < SCENE_LIMITS.MAX_SCENES ||
-    get().currentScene != null,
+    get().savedScenes.length < SCENE_LIMITS.MAX_SCENES || get().currentScene !== null,
 
   getObjectCount: () => get().placedObjects.length,
 
@@ -238,14 +227,14 @@ export const useSceneStore = create<SceneStore>()((set, get) => ({
  * Hook to get selected object.
  */
 export function useSelectedObject(): PlacedObject | undefined {
-  const selectedObjectId = useSceneStore((state) => state.selectedObjectId);
-  const getObjectById = useSceneStore((state) => state.getObjectById);
-  return selectedObjectId != null ? getObjectById(selectedObjectId) : undefined;
+  const selectedObjectId = useSceneStore(state => state.selectedObjectId);
+  const getObjectById = useSceneStore(state => state.getObjectById);
+  return selectedObjectId !== null ? getObjectById(selectedObjectId) : undefined;
 }
 
 /**
  * Hook to check if scene has unsaved changes.
  */
 export function useHasUnsavedChanges(): boolean {
-  return useSceneStore((state) => state.isDirty);
+  return useSceneStore(state => state.isDirty);
 }

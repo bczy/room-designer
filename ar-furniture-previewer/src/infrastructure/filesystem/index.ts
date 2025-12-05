@@ -1,8 +1,8 @@
 /**
  * Filesystem Exports
- * 
+ *
  * Barrel export for filesystem utilities.
- * 
+ *
  * @module infrastructure/filesystem
  */
 

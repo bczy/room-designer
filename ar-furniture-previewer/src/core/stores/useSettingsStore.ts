@@ -1,9 +1,9 @@
 /**
  * Settings Store
- * 
+ *
  * Zustand store for app settings and onboarding state.
  * Per T023: Create useSettingsStore.
- * 
+ *
  * @module core/stores/useSettingsStore
  */
 
@@ -18,16 +18,16 @@ import type { ThemeMode } from '@core/constants/theme';
 interface SettingsState {
   // Theme
   theme: ThemeMode;
-  
+
   // Onboarding
   onboardingComplete: boolean;
-  
+
   // Session
   lastARSession: number | null;
-  
+
   // Analytics
   analyticsEnabled: boolean;
-  
+
   // Loading state
   isHydrated: boolean;
 }
@@ -38,20 +38,20 @@ interface SettingsState {
 interface SettingsActions {
   // Theme
   setTheme: (theme: ThemeMode) => void;
-  
+
   // Onboarding
   completeOnboarding: () => void;
   resetOnboarding: () => void;
-  
+
   // Session
   updateLastARSession: () => void;
-  
+
   // Analytics
   setAnalyticsEnabled: (enabled: boolean) => void;
-  
+
   // Hydration
   setHydrated: () => void;
-  
+
   // Reset
   reset: () => void;
 }
@@ -71,10 +71,10 @@ const initialState: SettingsState = {
  */
 export const useSettingsStore = create<SettingsStore>()(
   persist(
-    (set) => ({
+    set => ({
       ...initialState,
 
-      setTheme: (theme) => set({ theme }),
+      setTheme: theme => set({ theme }),
 
       completeOnboarding: () => set({ onboardingComplete: true }),
 
@@ -82,7 +82,7 @@ export const useSettingsStore = create<SettingsStore>()(
 
       updateLastARSession: () => set({ lastARSession: Date.now() }),
 
-      setAnalyticsEnabled: (enabled) => set({ analyticsEnabled: enabled }),
+      setAnalyticsEnabled: enabled => set({ analyticsEnabled: enabled }),
 
       setHydrated: () => set({ isHydrated: true }),
 
@@ -91,10 +91,10 @@ export const useSettingsStore = create<SettingsStore>()(
     {
       name: 'ar-furniture-settings',
       storage: createJSONStorage(() => AsyncStorage),
-      onRehydrateStorage: () => (state) => {
+      onRehydrateStorage: () => state => {
         state?.setHydrated();
       },
-      partialize: (state) => ({
+      partialize: state => ({
         theme: state.theme,
         onboardingComplete: state.onboardingComplete,
         lastARSession: state.lastARSession,
@@ -108,19 +108,19 @@ export const useSettingsStore = create<SettingsStore>()(
  * Hook to check if settings are loaded.
  */
 export function useSettingsHydrated(): boolean {
-  return useSettingsStore((state) => state.isHydrated);
+  return useSettingsStore(state => state.isHydrated);
 }
 
 /**
  * Hook to get current theme.
  */
 export function useTheme(): ThemeMode {
-  return useSettingsStore((state) => state.theme);
+  return useSettingsStore(state => state.theme);
 }
 
 /**
  * Hook to check if onboarding is complete.
  */
 export function useOnboardingComplete(): boolean {
-  return useSettingsStore((state) => state.onboardingComplete);
+  return useSettingsStore(state => state.onboardingComplete);
 }

@@ -1,21 +1,14 @@
 /**
  * SkeletonLoader Component
- * 
+ *
  * Loading placeholder with shimmer animation.
  * Per T032: Create SkeletonLoader component.
- * 
+ *
  * @module app/components/common/SkeletonLoader
  */
 
 import React, { useEffect, useRef } from 'react';
-import {
-  View,
-  StyleSheet,
-  ViewStyle,
-  Animated,
-  Easing,
-  DimensionValue,
-} from 'react-native';
+import { View, StyleSheet, ViewStyle, Animated, Easing, DimensionValue } from 'react-native';
 import { THEME } from '@core/constants/theme';
 
 /**
@@ -114,7 +107,7 @@ export function SkeletonLoader({
       style={[
         styles.skeleton,
         variantStyles,
-        borderRadius != null && { borderRadius },
+        borderRadius !== null && { borderRadius },
         animated && { opacity },
         style,
       ]}
@@ -167,11 +160,7 @@ export function SkeletonCard({
   return (
     <View style={[styles.card, style]}>
       {showImage && (
-        <SkeletonLoader
-          variant="rectangular"
-          height={imageHeight}
-          style={styles.cardImage}
-        />
+        <SkeletonLoader variant="rectangular" height={imageHeight} style={styles.cardImage} />
       )}
       <View style={styles.cardContent}>
         <SkeletonText lines={lines} />

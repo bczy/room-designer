@@ -1,8 +1,8 @@
 /**
  * Common Components Exports
- * 
+ *
  * Barrel export for reusable UI components.
- * 
+ *
  * @module app/components/common
  */
 

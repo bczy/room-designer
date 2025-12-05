@@ -1,9 +1,9 @@
 /**
  * Root Navigator
- * 
+ *
  * Bottom tab navigation structure per plan.md.
  * Per T021: Create RootNavigator with bottom tabs.
- * 
+ *
  * @module app/navigation/RootNavigator
  */
 
@@ -38,9 +38,7 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 function TabIcon({ name, focused }: { name: string; focused: boolean }): React.ReactElement {
   return (
     <View style={[styles.iconContainer, focused && styles.iconFocused]}>
-      <Text style={[styles.iconText, focused && styles.iconTextFocused]}>
-        {name.charAt(0)}
-      </Text>
+      <Text style={[styles.iconText, focused && styles.iconTextFocused]}>{name.charAt(0)}</Text>
     </View>
   );
 }
@@ -74,9 +72,7 @@ export function RootNavigator(): React.ReactElement {
           component={LibraryScreen}
           options={{
             tabBarLabel: 'Library',
-            tabBarIcon: ({ focused }) => (
-              <TabIcon name="Library" focused={focused} />
-            ),
+            tabBarIcon: ({ focused }) => <TabIcon name="Library" focused={focused} />,
           }}
         />
         <Tab.Screen
@@ -84,9 +80,7 @@ export function RootNavigator(): React.ReactElement {
           component={ScenesScreen}
           options={{
             tabBarLabel: 'Scenes',
-            tabBarIcon: ({ focused }) => (
-              <TabIcon name="Scenes" focused={focused} />
-            ),
+            tabBarIcon: ({ focused }) => <TabIcon name="Scenes" focused={focused} />,
           }}
         />
         <Tab.Screen
@@ -94,9 +88,7 @@ export function RootNavigator(): React.ReactElement {
           component={SettingsScreen}
           options={{
             tabBarLabel: 'Settings',
-            tabBarIcon: ({ focused }) => (
-              <TabIcon name="Settings" focused={focused} />
-            ),
+            tabBarIcon: ({ focused }) => <TabIcon name="Settings" focused={focused} />,
           }}
         />
       </Tab.Navigator>

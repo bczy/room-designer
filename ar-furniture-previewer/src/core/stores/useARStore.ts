@@ -1,9 +1,9 @@
 /**
  * AR Store
- * 
+ *
  * Zustand store for AR session state.
  * Per T026: Create useARStore skeleton.
- * 
+ *
  * @module core/stores/useARStore
  */
 
@@ -14,12 +14,7 @@ import { AR_LIMITS } from '@core/constants/limits';
 /**
  * AR session status.
  */
-export type ARStatus =
-  | 'IDLE'
-  | 'INITIALIZING'
-  | 'READY'
-  | 'SURFACE_DETECTED'
-  | 'ERROR';
+export type ARStatus = 'IDLE' | 'INITIALIZING' | 'READY' | 'SURFACE_DETECTED' | 'ERROR';
 
 /**
  * Placement mode for AR interactions.
@@ -35,22 +30,22 @@ interface ARState {
   isInitialized: boolean;
   error: ARErrorCode | null;
   errorMessage: string | null;
-  
+
   // Capabilities
   capabilities: ARCapabilities | null;
-  
+
   // Surface detection
   surfaceDetected: boolean;
   surfaceNormal: [number, number, number] | null;
-  
+
   // Placement mode
   placementMode: PlacementMode;
   modelToPlace: string | null;
-  
+
   // Performance
   currentFps: number;
   memoryUsage: number; // bytes
-  
+
   // WebView state
   webViewReady: boolean;
 }
@@ -64,31 +59,31 @@ interface ARActions {
   setInitialized: (initialized: boolean) => void;
   setError: (error: ARErrorCode | null, message?: string) => void;
   clearError: () => void;
-  
+
   // Capabilities
   setCapabilities: (capabilities: ARCapabilities) => void;
-  
+
   // Surface detection
   setSurfaceDetected: (detected: boolean, normal?: [number, number, number]) => void;
   clearSurface: () => void;
-  
+
   // Placement mode
   startPlacing: (modelId: string) => void;
   startAdjusting: () => void;
   cancelPlacement: () => void;
   confirmPlacement: () => void;
-  
+
   // Performance monitoring
   updatePerformance: (fps: number, memoryBytes: number) => void;
   isPerformanceOk: () => boolean;
-  
+
   // WebView state
   setWebViewReady: (ready: boolean) => void;
-  
+
   // Queries
   canPlaceObject: () => boolean;
   isSessionActive: () => boolean;
-  
+
   // Reset
   reset: () => void;
 }
@@ -116,9 +111,9 @@ const initialState: ARState = {
 export const useARStore = create<ARStore>()((set, get) => ({
   ...initialState,
 
-  setStatus: (status) => set({ status }),
+  setStatus: status => set({ status }),
 
-  setInitialized: (isInitialized) =>
+  setInitialized: isInitialized =>
     set({
       isInitialized,
       status: isInitialized ? 'READY' : 'IDLE',
@@ -128,7 +123,7 @@ export const useARStore = create<ARStore>()((set, get) => ({
     set({
       error,
       errorMessage: errorMessage ?? null,
-      status: error != null ? 'ERROR' : get().status,
+      status: error !== null ? 'ERROR' : get().status,
     }),
 
   clearError: () =>
@@ -138,7 +133,7 @@ export const useARStore = create<ARStore>()((set, get) => ({
       status: get().isInitialized ? 'READY' : 'IDLE',
     }),
 
-  setCapabilities: (capabilities) => set({ capabilities }),
+  setCapabilities: capabilities => set({ capabilities }),
 
   setSurfaceDetected: (surfaceDetected, surfaceNormal) =>
     set({
@@ -154,7 +149,7 @@ export const useARStore = create<ARStore>()((set, get) => ({
       status: get().isInitialized ? 'READY' : 'IDLE',
     }),
 
-  startPlacing: (modelId) =>
+  startPlacing: modelId =>
     set({
       placementMode: 'PLACING',
       modelToPlace: modelId,
@@ -178,8 +173,7 @@ export const useARStore = create<ARStore>()((set, get) => ({
       modelToPlace: null,
     }),
 
-  updatePerformance: (currentFps, memoryUsage) =>
-    set({ currentFps, memoryUsage }),
+  updatePerformance: (currentFps, memoryUsage) => set({ currentFps, memoryUsage }),
 
   isPerformanceOk: () => {
     const { currentFps, memoryUsage } = get();
@@ -189,7 +183,7 @@ export const useARStore = create<ARStore>()((set, get) => ({
     );
   },
 
-  setWebViewReady: (webViewReady) =>
+  setWebViewReady: webViewReady =>
     set({
       webViewReady,
       status: webViewReady ? 'INITIALIZING' : 'IDLE',
@@ -200,14 +194,14 @@ export const useARStore = create<ARStore>()((set, get) => ({
     return (
       state.isInitialized &&
       state.surfaceDetected &&
-      state.error == null &&
+      state.error === null &&
       state.placementMode === 'NONE'
     );
   },
 
   isSessionActive: () => {
     const state = get();
-    return state.isInitialized && state.webViewReady && state.error == null;
+    return state.isInitialized && state.webViewReady && state.error === null;
   },
 
   reset: () => set(initialState),
@@ -218,11 +212,8 @@ export const useARStore = create<ARStore>()((set, get) => ({
  */
 export function useARReady(): boolean {
   return useARStore(
-    (state) =>
-      state.isInitialized &&
-      state.webViewReady &&
-      state.surfaceDetected &&
-      state.error == null
+    state =>
+      state.isInitialized && state.webViewReady && state.surfaceDetected && state.error === null
   );
 }
 
@@ -230,8 +221,8 @@ export function useARReady(): boolean {
  * Hook to get current AR error with message.
  */
 export function useARError(): { code: ARErrorCode; message: string } | null {
-  return useARStore((state) =>
-    state.error != null
+  return useARStore(state =>
+    state.error !== null
       ? { code: state.error, message: state.errorMessage ?? 'Unknown error' }
       : null
   );
@@ -244,7 +235,7 @@ export function usePlacementMode(): {
   mode: PlacementMode;
   modelId: string | null;
 } {
-  return useARStore((state) => ({
+  return useARStore(state => ({
     mode: state.placementMode,
     modelId: state.modelToPlace,
   }));

@@ -1,9 +1,9 @@
 /**
  * WebView Message Handlers
- * 
+ *
  * Registry and handlers for WebView messages.
  * Per T020: Create message handler registry.
- * 
+ *
  * @module infrastructure/webview/messageHandlers
  */
 
@@ -47,6 +47,7 @@ class MessageHandlerRegistry {
     // Log all messages in development
     if (__DEV__) {
       arWebViewBridge.onAny(message => {
+        // eslint-disable-next-line no-console
         console.log('[WebView Message]', message.type, message.payload);
       });
     }
@@ -172,10 +173,7 @@ class MessageHandlerRegistry {
   /**
    * Register handler for any message type.
    */
-  onMessage(
-    type: WebViewToRNMessageType,
-    handler: TypedMessageHandler<unknown>
-  ): () => void {
+  onMessage(type: WebViewToRNMessageType, handler: TypedMessageHandler<unknown>): () => void {
     return arWebViewBridge.on(type, message => {
       handler(message.payload, message);
     });

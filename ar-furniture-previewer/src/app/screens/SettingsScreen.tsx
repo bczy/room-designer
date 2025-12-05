@@ -1,9 +1,9 @@
 /**
  * Settings Screen
- * 
+ *
  * App settings and preferences screen.
  * Per T022: Create placeholder screen components.
- * 
+ *
  * @module app/screens/SettingsScreen
  */
 
@@ -24,14 +24,10 @@ export function SettingsScreen(): React.ReactElement {
       <View style={styles.content}>
         <View style={styles.placeholder}>
           <Text style={styles.title}>Preferences</Text>
-          <Text style={styles.subtitle}>
-            App configuration and options
-          </Text>
+          <Text style={styles.subtitle}>App configuration and options</Text>
           <Text style={styles.description}>
-            • Theme (Light/Dark/System){'\n'}
-            • AR quality settings{'\n'}
-            • Storage management{'\n'}
-            • About & help
+            • Theme (Light/Dark/System){'\n'}• AR quality settings{'\n'}• Storage management{'\n'}•
+            About & help
           </Text>
         </View>
       </View>
