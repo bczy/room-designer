@@ -1,0 +1,25 @@
+{
+  "name": "room-designer",
+  "version": "0.0.0-development",
+  "description": "Room Designer Application",
+  "private": true,
+  "scripts": {
+    "release": "semantic-release",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bczy/room-designer.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    
+    "@commitlint/cli": "^19.x",
+    "@commitlint/config-conventional": "^19.x",
+    "husky": "^9.x"
+  }
+}
