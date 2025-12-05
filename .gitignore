@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Build outputs
+dist/
+build/
 # Yarn
 .yarn/*
 !.yarn/patches
@@ -13,6 +16,14 @@ node_modules/
 # Logs
 *.log
 npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
 yarn-debug.log*
 yarn-error.log*
 
@@ -20,6 +31,8 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
+# Package manager locks (optional, comment out if you want to track)
+# package-lock.json
 # IDE
 .idea/
 
