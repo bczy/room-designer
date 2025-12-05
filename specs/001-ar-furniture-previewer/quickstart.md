@@ -11,7 +11,7 @@
 | Tool | Version | Purpose |
 |------|---------|---------|
 | Node.js | 18.x or 20.x LTS | JavaScript runtime |
-| npm | 9.x+ | Package manager |
+| Yarn | 1.22.x+ | Package manager (required) |
 | Watchman | Latest | File watching (macOS) |
 | Xcode | 15.x+ | iOS builds (macOS only) |
 | Android Studio | Hedgehog+ | Android builds & emulator |
@@ -41,13 +41,13 @@ cd ar-furniture-previewer
 
 ```bash
 # Install Node.js dependencies
-npm install
+yarn install
 
 # Install iOS dependencies (macOS only)
 cd ios && pod install && cd ..
 
 # Install EAS CLI globally
-npm install -g eas-cli
+yarn global add eas-cli
 ```
 
 ### 3. Configure Environment Variables
@@ -132,7 +132,7 @@ After build completes:
 3. Start the development server:
 
 ```bash
-npx expo start --dev-client
+yarn expo start --dev-client
 ```
 
 ### Running on Simulators
@@ -140,20 +140,20 @@ npx expo start --dev-client
 **iOS Simulator** (macOS only):
 ```bash
 # Start Metro bundler
-npx expo start --dev-client
+yarn expo start --dev-client
 
 # In another terminal, run on simulator
-npx expo run:ios
+yarn expo run:ios
 ```
 
 **Android Emulator**:
 ```bash
 # Ensure emulator is running
 # Start Metro bundler
-npx expo start --dev-client
+yarn expo start --dev-client
 
 # Run on emulator
-npx expo run:android
+yarn expo run:android
 ```
 
 ### Testing on Physical Devices
@@ -219,16 +219,16 @@ ar-furniture-previewer/
 
 ```bash
 # Run all unit tests
-npm test
+yarn test
 
 # Run tests in watch mode
-npm test -- --watch
+yarn test --watch
 
 # Run tests with coverage
-npm test -- --coverage
+yarn test --coverage
 
 # Run specific test file
-npm test -- src/core/services/__tests__/storage.test.ts
+yarn test src/core/services/__tests__/storage.test.ts
 ```
 
 ### E2E Tests with Detox
@@ -249,15 +249,17 @@ detox test --configuration android.emu.debug
 
 ### Linting & Type Checking
 
+> **Note**: This project uses ESLint 9 with flat config format (`eslint.config.js`), not the legacy `.eslintrc.js` format.
+
 ```bash
 # Run ESLint
-npm run lint
+yarn lint
 
 # Fix auto-fixable issues
-npm run lint:fix
+yarn lint:fix
 
 # Run TypeScript type check
-npm run typecheck
+yarn typecheck
 ```
 
 ### Building for Production
@@ -284,7 +286,7 @@ The 8th Wall code runs in a WebView. During development:
 
 ```bash
 # Start WebView dev server (separate terminal)
-npm run web:dev
+yarn web:dev
 
 # This serves the /web directory on localhost:3000
 ```
@@ -311,7 +313,7 @@ Configure WebView URL in development:
 
 ```bash
 # Clear Metro cache
-npx expo start --clear
+yarn expo start --clear
 ```
 
 ### Issue: iOS pod install fails

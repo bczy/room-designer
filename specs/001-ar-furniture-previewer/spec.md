@@ -51,7 +51,7 @@ As a user, I want to scan real-world objects using my phone camera and convert t
 
 **Why this priority**: This differentiates the app from basic AR viewers. While valuable, it requires more complex implementation and users can still get value from P1 and P2 without scanning.
 
-**Independent Test**: Can be fully tested by entering Scan mode, following the guided wizard to capture at least 20 photos (25-40 recommended) of an object, waiting for processing, and viewing the resulting 3D model. Delivers custom content creation value.
+**Independent Test**: Can be fully tested by entering Scan mode, following the guided wizard to capture 25+ photos of an object, waiting for processing, and viewing the resulting 3D model. Delivers custom content creation value.
 
 **Acceptance Scenarios**:
 
@@ -129,11 +129,11 @@ As a new user, I want to understand how to use the app's features through a guid
 
 #### 3D Object Scanning
 - **FR-010**: System MUST provide a guided scanning wizard with 5 steps (preparation, capture, progress, processing, preview)
-- **FR-011**: System MUST recommend 25-40 photos for complete object coverage (displayed as guidance to user)
+- **FR-011**: System MUST require 25-40 photos for complete object coverage
 - **FR-012**: System MUST provide visual feedback during capture (green checkmarks for good photos, red warnings for blur/poor lighting)
 - **FR-013**: System MUST display a coverage map showing captured angles
 - **FR-014**: System MUST generate GLB files client-side using Lightship API without server upload
-- **FR-015**: System MUST enforce minimum 20 photos before allowing scan processing
+- **FR-015**: System MUST validate scan quality (minimum 20 photos, texture resolution, geometry limits)
 - **FR-016**: System MUST auto-generate 256x256 thumbnails for scanned models
 - **FR-017**: System MUST display estimated processing time (2-5 minutes)
 
@@ -179,6 +179,7 @@ As a new user, I want to understand how to use the app's features through a guid
 - **FR-043**: CI/CD MUST use GitHub Actions with ubuntu-latest runners
 - **FR-044**: Builds MUST use Expo EAS Build with defined profiles (development, preview, production)
 - **FR-045**: System MUST inject 8th Wall API keys via environment variables, never committed to repo
+- **FR-051**: Project MUST use Yarn as the package manager for all dependency management and scripts
 
 ### Key Entities
 

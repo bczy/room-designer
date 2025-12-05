@@ -15,15 +15,15 @@
 
 **Purpose**: Project initialization and React Native + Expo bare workflow setup
 
-- [ ] T001 Create project structure with Expo bare workflow: `npx create-expo-app ar-furniture-previewer --template bare-minimum`
-- [ ] T002 Configure TypeScript strict mode in tsconfig.json
-- [ ] T003 [P] Install core dependencies: react-navigation, zustand, react-native-webview, react-native-fs
-- [ ] T004 [P] Configure ESLint + Prettier with React Native rules in .eslintrc.js and .prettierrc
-- [ ] T005 [P] Create directory structure per plan.md: src/app/, src/core/, src/infrastructure/, web/, tests/
-- [ ] T006 [P] Configure Jest with React Native Testing Library in jest.config.js
-- [ ] T007 [P] Configure Detox for E2E testing in detox.config.js
-- [ ] T008 Create EAS Build configuration in eas.json (development, preview, production profiles)
-- [ ] T009 [P] Configure environment variables for 8th Wall API key in app.config.js
+- [X] T001 Create project structure with Expo bare workflow: `yarn create expo-app ar-furniture-previewer --template bare-minimum` (FR-051: Yarn required)
+- [X] T002 Configure TypeScript strict mode in tsconfig.json
+- [X] T003 [P] Install core dependencies: react-navigation, zustand, react-native-webview, react-native-fs
+- [X] T004 [P] Configure ESLint 9 flat config + Prettier with React Native rules in eslint.config.js and .prettierrc
+- [X] T005 [P] Create directory structure per plan.md: src/app/, src/core/, src/infrastructure/, web/, tests/
+- [X] T006 [P] Configure Jest with React Native Testing Library in jest.config.js
+- [X] T007 [P] Configure Detox for E2E testing in detox.config.js
+- [X] T008 Create EAS Build configuration in eas.json (development, preview, production profiles)
+- [X] T009 [P] Configure environment variables for 8th Wall API key in app.config.js
 
 ---
 
@@ -35,50 +35,55 @@
 
 ### Type Definitions
 
-- [ ] T010 [P] Create core types in src/core/types/model.types.ts per data-model.md (Model, ModelMetadata, ModelCategory, BoundingBox)
-- [ ] T011 [P] Create scene types in src/core/types/scene.types.ts per data-model.md (SavedScene, PlacedObject, Transform, AnchorType)
-- [ ] T012 [P] Create WebView bridge types in src/core/types/webview.types.ts per contracts/webview-bridge.ts
-- [ ] T013 [P] Create index barrel export in src/core/types/index.ts
+- [X] T010 [P] Create core types in src/core/types/model.types.ts per data-model.md (Model, ModelMetadata, ModelCategory, BoundingBox)
+- [X] T011 [P] Create scene types in src/core/types/scene.types.ts per data-model.md (SavedScene, PlacedObject, Transform, AnchorType)
+- [X] T012 [P] Create WebView bridge types in src/core/types/webview.types.ts per contracts/webview-bridge.ts
+- [X] T013 [P] Create index barrel export in src/core/types/index.ts
 
 ### Constants & Configuration
 
-- [ ] T014 [P] Define theme constants in src/core/constants/theme.ts (colors, spacing, typography per FR-036/FR-038)
-- [ ] T015 [P] Define storage limits in src/core/constants/limits.ts (50 models, 20 scenes, 10 objects, 50MB per FR-046)
-- [ ] T016 [P] Define file paths in src/core/constants/paths.ts (/Documents/ARFurniture/ structure per research.md)
+- [X] T014 [P] Define theme constants in src/core/constants/theme.ts (colors, spacing, typography per FR-036/FR-038)
+- [X] T015 [P] Define storage limits in src/core/constants/limits.ts (50 models, 20 scenes, 10 objects, 50MB per FR-046)
+- [X] T016 [P] Define file paths in src/core/constants/paths.ts (/Documents/ARFurniture/ structure per research.md)
 
 ### Storage Infrastructure
 
-- [ ] T017 Implement FileSystemAdapter in src/infrastructure/filesystem/FileSystemAdapter.ts (react-native-fs wrapper)
-- [ ] T018 Implement storage key constants and AsyncStorage helpers in src/infrastructure/storage/asyncStorageHelpers.ts
+- [X] T017 Implement FileSystemAdapter in src/infrastructure/filesystem/FileSystemAdapter.ts (react-native-fs wrapper)
+- [X] T018 Implement storage key constants and AsyncStorage helpers in src/infrastructure/storage/asyncStorageHelpers.ts
 
 ### WebView Bridge (Core - No 8th Wall yet)
 
-- [ ] T019 Create WebViewBridge class in src/infrastructure/webview/ARWebViewBridge.ts implementing bridge contract (postMessage/onMessage)
-- [ ] T020 Create message handler registry in src/infrastructure/webview/messageHandlers.ts
+- [X] T019 Create WebViewBridge class in src/infrastructure/webview/ARWebViewBridge.ts implementing bridge contract (postMessage/onMessage)
+- [X] T020 Create message handler registry in src/infrastructure/webview/messageHandlers.ts
 
 ### Navigation Shell
 
-- [ ] T021 Configure React Navigation with bottom tabs in src/app/navigation/RootNavigator.tsx (Home, Scan, Library, Scenes per FR-033)
-- [ ] T022 [P] Create placeholder screen components: HomeScreen.tsx, ScannerScreen.tsx, LibraryScreen.tsx, ARViewerScreen.tsx, SavedScenesScreen.tsx in src/app/screens/
+- [X] T021 Configure React Navigation with bottom tabs in src/app/navigation/RootNavigator.tsx (Home, Scan, Library, Scenes per FR-033)
+- [X] T022 [P] Create placeholder screen components: HomeScreen.tsx, ScannerScreen.tsx, LibraryScreen.tsx, ARViewerScreen.tsx, SavedScenesScreen.tsx in src/app/screens/
 
 ### Zustand Store Setup
 
-- [ ] T023 [P] Create useSettingsStore in src/core/stores/useSettingsStore.ts (theme, onboarding state per AppSettings)
-- [ ] T024 [P] Create useModelStore skeleton in src/core/stores/useModelStore.ts (model CRUD state)
-- [ ] T025 [P] Create useSceneStore skeleton in src/core/stores/useSceneStore.ts (scene persistence state)
-- [ ] T026 [P] Create useARStore skeleton in src/core/stores/useARStore.ts (AR session state)
+- [X] T023 [P] Create useSettingsStore in src/core/stores/useSettingsStore.ts (theme, onboarding state per AppSettings)
+- [X] T024 [P] Create useModelStore skeleton in src/core/stores/useModelStore.ts (model CRUD state)
+- [X] T025 [P] Create useSceneStore skeleton in src/core/stores/useSceneStore.ts (scene persistence state)
+- [X] T026 [P] Create useARStore skeleton in src/core/stores/useARStore.ts (AR session state)
 
 ### Permissions
 
-- [ ] T027 Implement PermissionsAdapter in src/infrastructure/permissions/PermissionsAdapter.ts (camera, photo library)
-- [ ] T028 Create usePermissions hook in src/app/hooks/usePermissions.ts
+- [X] T027 Implement PermissionsAdapter in src/infrastructure/permissions/PermissionsAdapter.ts (camera, photo library)
+- [X] T028 Create usePermissions hook in src/app/hooks/usePermissions.ts
 
 ### Common UI Components
 
-- [ ] T029 [P] Create Button component in src/app/components/common/Button.tsx (primary, secondary, disabled states)
-- [ ] T030 [P] Create Card component in src/app/components/common/Card.tsx (elevation, border radius per theme)
-- [ ] T031 [P] Create Modal component in src/app/components/common/Modal.tsx (slide-up sheet)
-- [ ] T032 [P] Create SkeletonLoader component in src/app/components/common/SkeletonLoader.tsx (loading states >200ms)
+- [X] T029 [P] Create Button component in src/app/components/common/Button.tsx (primary, secondary, disabled states)
+- [X] T030 [P] Create Card component in src/app/components/common/Card.tsx (elevation, border radius per theme)
+- [X] T031 [P] Create Modal component in src/app/components/common/Modal.tsx (slide-up sheet)
+- [X] T032 [P] Create SkeletonLoader component in src/app/components/common/SkeletonLoader.tsx (loading states >200ms)
+
+### Code Quality Validation
+
+- [X] T032a Migrate ESLint from legacy .eslintrc.js to ESLint 9 flat config in eslint.config.js (remove incompatible eslint-plugin-react-native, update package.json lint scripts)
+- [X] T032b Run `yarn typecheck` and `yarn lint` to validate all Phase 2 code passes strict TypeScript and ESLint checks
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
